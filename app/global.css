@@ -148,3 +148,27 @@ table {
 .title {
   text-wrap: balance;
 }
+
+
+.iframe-container {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+}
+
+.iframe-container.desktop iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+
+.iframe-container.mobile {
+  width: 375px; /* Width of a standard mobile screen */
+  margin: 20px auto;
+}
+
+.iframe-container.mobile iframe {
+  width: 100%;
+  height: 667px; /* Height of a standard mobile screen */
+  border: none;
+}

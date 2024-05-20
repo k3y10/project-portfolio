@@ -11,8 +11,8 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'k3y10s Tech Portfolio',
+    template: '%s | About k3y10',
   },
   description: 'This is my portfolio.',
   openGraph: {
