@@ -149,7 +149,7 @@ table {
   text-wrap: balance;
 }
 
-
+/* New styles for responsive iframes */
 .iframe-container {
   width: 100%;
   margin: 20px 0;
