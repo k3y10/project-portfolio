@@ -7,6 +7,9 @@ const navItems = {
   '/portfolio': {
     name: 'portfolio',
   },
+  '/design': {
+    name: 'design',
+  },
   'https://calendly.com/k3yt3n/interviews': {
     name: 'schedule an interview',
   },
