@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState, useEffect } from 'react';
 
 const Design: React.FC = () => {
   const iframes = [
@@ -20,6 +22,32 @@ const Design: React.FC = () => {
     },
   ];
 
+  const [iframesLoaded, setIframesLoaded] = useState(false);
+
+  useEffect(() => {
+    // Function to check if all iframes have loaded
+    const checkIframesLoaded = () => {
+      const iframes = Array.from(document.querySelectorAll('iframe'));
+      const allLoaded = iframes.every(iframe => iframe.contentWindow?.document.readyState === 'complete');
+      if (allLoaded) {
+        setIframesLoaded(true);
+      }
+    };
+
+    // Add event listeners for iframe load events
+    const iframes = Array.from(document.querySelectorAll('iframe'));
+    iframes.forEach(iframe => {
+      iframe.addEventListener('load', checkIframesLoaded);
+    });
+
+    // Remove event listeners when component unmounts
+    return () => {
+      iframes.forEach(iframe => {
+        iframe.removeEventListener('load', checkIframesLoaded);
+      });
+    };
+  }, []);
+
   return (
     <div className="container items-center text-center mx-auto p-4">
       <h1 className="text-2xl font-semibold tracking-tighter mb-4">Design Concepts</h1>
@@ -29,15 +57,21 @@ const Design: React.FC = () => {
       {iframes.map((iframe, index) => (
         <div key={index} className="mb-8">
           <h2 className="text-xl font-medium tracking-tight mb-2">{iframe.title}</h2>
-          <iframe
-            src={iframe.src}
-            title={iframe.title}
-            width="100%"
-            height="600"
-            style={{ border: 'none' }}
-            allowFullScreen
-            sandbox="allow-scripts allow-same-origin allow-popups"
-          ></iframe>
+          {iframesLoaded ? (
+            // Render iframe when all iframes have loaded
+            <iframe
+              src={iframe.src}
+              title={iframe.title}
+              width="100%"
+              height="600"
+              style={{ border: 'none' }}
+              allowFullScreen
+              sandbox="allow-scripts allow-same-origin allow-popups"
+            ></iframe>
+          ) : (
+            // Render loading indicator while iframes are loading
+            <p>Loading...</p>
+          )}
         </div>
       ))}
     </div>
