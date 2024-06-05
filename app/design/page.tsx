@@ -51,11 +51,11 @@ const Design: React.FC = () => {
   return (
     <div className="container items-center text-center mx-auto p-4">
       <h1 className="text-2xl font-semibold tracking-tighter mb-4">Design Concepts</h1>
-      <p className="mb-4">
+      <p className="mb-12">
         Explore Figma prototypes showcasing various design concepts and user experiences.
       </p>
       {iframes.map((iframe, index) => (
-        <div key={index} className="mb-8">
+        <div key={index} className="mb-12">
           <h2 className="text-xl font-medium tracking-tight mb-2">{iframe.title}</h2>
           <div id={`${index}`} className="lazy-iframe">
             {!iframesLoaded[index] && <p>Loading...</p>}
