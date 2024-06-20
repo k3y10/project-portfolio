@@ -20,13 +20,22 @@ export default function Page() {
       <div className="text-center">
         <h1 className="text-2xl font-semibold tracking-tighter mb-4">About Me</h1>
         <p className="mb-4">
-          {`I'm a dynamic technical leader with 8+ years of experience, previously at Tesla, transitioning from self-taught hacking and full-stack web development to spearheading innovations in cryptography, blockchain technology, quantum laser communication, and embedded AI software. My journey began in cybersecurity and software development, where I bootstrapped platforms and security teams for startups across various funding stages. With a keen eye for design and user experience, I have also honed my skills in UX/UI, ensuring that the products I develop are not only technically sound but also intuitive and user-friendly. My expertise spans creating seamless interfaces and engaging user experiences that enhance product adoption and satisfaction.`}
+          {`I'm a dynamic technical leader with 8+ years of experience, previously at Tesla, transitioning from self-taught hacking and full-stack web development to innovations in cryptography, blockchain technology, quantum laser communication, and embedded AI software. My journey began in cybersecurity and software development, bootstrapping platforms and security teams for startups. I have a keen eye for design and user experience, ensuring that products are both technically sound and user-friendly.`}
         </p>
         <p className="mb-4">
-          {`Today, I lead groundbreaking efforts at the forefront of technology, developing new theoretical working models for quantum laser communication solutions and advancing embedded AI software-related products to redefine industry standards across various platforms.`}
+          {`Currently, I lead groundbreaking efforts in developing theoretical models for quantum laser communication and advancing embedded AI software to redefine industry standards. As a DeFi Philosopher, Darknet Investigator, Independent Quantum Theorist, and Ethical Hacker, I push the boundaries of technology while balancing my professional life with rigorous physical activity as a Type 1 Diabetic Athlete.`}
         </p>
         <p className="mb-4">
-          {`In addition to my technical prowess, I am a DeFi Philosopher, Darknet Investigator, Independent Quantum Theorist, and Ethical Hacker. I am passionate about freedom and entrepreneurship, and I actively engage in these areas to push the boundaries of what is possible. As a Type 1 Diabetic Athlete, I balance my demanding professional life with rigorous physical activity, demonstrating resilience and dedication in all aspects of my life. Born and raised in the SLC Underground, my unconventional background fuels my innovative approach to solving complex problems.`}
+          {`Born and raised in the SLC Underground, my unconventional background fuels my innovative approach to solving complex problems. I rejected traditional education early, teaching myself programming and cybersecurity, which led to a role at Tesla. After leaving Tesla, I co-founded iDeFi.AI, pioneering blockchain and Web3 tech with AI-driven security solutions.`}
+        </p>
+        <p className="mb-4">
+          {`I have developed AI-driven security solutions, advanced quantum laser communication, and built blockchains from scratch. Despite the complexities of the digital realm, my passion for the outdoors remains. Whether scaling mountain peaks or exploring wilderness, nature and technology inspire me.`}
+        </p>
+        <p className="mb-4">
+          {`Standing on the edge of tomorrow, I embrace the limitless potential of technology. Let’s disrupt the norm and innovate together, where the synergy of nature and tech defines true progress.`}
+        </p>
+        <p className="mb-4">
+          {`My goal is to make Utah a better place for current and future generations.`}
         </p>
       </div>
       <div className="my-8 w-full flex flex-col items-center">

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 const Design: React.FC = () => {
   const iframes = [
@@ -22,31 +22,33 @@ const Design: React.FC = () => {
     },
   ];
 
-  const [iframesLoaded, setIframesLoaded] = useState<boolean[]>([]);
+  const [iframesLoaded, setIframesLoaded] = useState<boolean[]>(new Array(iframes.length).fill(false));
+
+  const handleIntersect: IntersectionObserverCallback = useCallback((entries, observer) => {
+    entries.forEach((entry) => {
+      const index = parseInt(entry.target.id);
+      if (entry.isIntersecting && !iframesLoaded[index]) {
+        setIframesLoaded((prevState) => {
+          const newState = [...prevState];
+          newState[index] = true;
+          return newState;
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, [iframesLoaded]);
 
   useEffect(() => {
-    const handleIntersect: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !iframesLoaded[parseInt(entry.target.id)]) {
-          setIframesLoaded((prevState) => {
-            const newState = [...prevState];
-            newState[parseInt(entry.target.id)] = true;
-            return newState;
-          });
-        }
-      });
-    };
-
     const observer = new IntersectionObserver(handleIntersect, { rootMargin: '0px 0px 200px 0px' });
 
-    document.querySelectorAll('.lazy-iframe').forEach((iframe, index) => {
+    document.querySelectorAll('.lazy-iframe').forEach((iframe) => {
       observer.observe(iframe);
     });
 
     return () => {
       observer.disconnect();
     };
-  }, [iframesLoaded]);
+  }, [handleIntersect]);
 
   return (
     <div className="container items-center text-center mx-auto p-4">
@@ -73,8 +75,8 @@ const Design: React.FC = () => {
           </div>
         </div>
       ))}
-  </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default Design;
