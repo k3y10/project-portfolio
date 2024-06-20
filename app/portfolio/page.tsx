@@ -2,7 +2,7 @@ import { BlogPosts } from 'app/components/posts';
 
 export const metadata = {
   title: 'Portfolio',
-  description: 'dia-dmv-ais Projects',
+  description: 'Projects',
 };
 
 export default function Page() {

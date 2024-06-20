@@ -1,29 +1,32 @@
-import { baseUrl } from 'app/sitemap'
-import { getBlogPosts } from 'app/portfolio/utils'
+import { baseUrl } from 'app/sitemap';
+import { getBlogPosts } from 'app/portfolio/utils';
+import { getDesignPosts } from 'app/design/utils';
 
 export async function GET() {
-  let allBlogs = await getBlogPosts()
+  let portfolioPosts = await getBlogPosts();
+  let designPosts = await getDesignPosts();
 
-  const itemsXml = allBlogs
-    .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-        return -1
-      }
-      return 1
-    })
+  // Combine both portfolio and design posts with their respective types
+  const allPosts = [
+    ...portfolioPosts.map((post) => ({ ...post, type: 'portfolio', slug: post.slug })),
+    ...designPosts.map((design) => ({ ...design, type: 'design', slug: design.slug }))
+  ];
+
+  // Generate XML for each post
+  const itemsXml = allPosts
+    .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
     .map(
       (post) =>
         `<item>
           <title>${post.metadata.title}</title>
-          <link>${baseUrl}/home/${post.slug}</link>
+          <link>${baseUrl}/${post.type}/${post.slug}</link>
           <description>${post.metadata.summary || ''}</description>
-          <pubDate>${new Date(
-            post.metadata.publishedAt
-          ).toUTCString()}</pubDate>
+          <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
         </item>`
     )
-    .join('\n')
+    .join('\n');
 
+  // Combine all items into an RSS feed
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
@@ -32,11 +35,11 @@ export async function GET() {
         <description>This is my portfolio RSS feed</description>
         ${itemsXml}
     </channel>
-  </rss>`
+  </rss>`;
 
   return new Response(rssFeed, {
     headers: {
       'Content-Type': 'text/xml',
     },
-  })
+  });
 }
